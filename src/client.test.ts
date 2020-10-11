@@ -172,7 +172,7 @@ describe('getEnvVar', () => {
     await client.getEnvVar(envVarName);
     expectFetch(
       HTTPMethod.Get,
-      `project/${client.getProjectSlug()}/envvar/${envVarName}`
+      `projec/${client.getProjectSlug()}/envvar/${envVarName}`
     );
   });
 });
@@ -236,7 +236,7 @@ describe('listWorkflowJobs', () => {
   it('constructs request with the correct arguments', async () => {
     mockFetch();
     await client.listWorkflowJobs(workflowId);
-    expectFetch(HTTPMethod.Get, `workflow/${workflowId}/job`);
+    expectFetch(HTTPMethod.Post, `workflow/${workflowId}/job`);
   });
 
   it('can specify a page token', async () => {
@@ -261,7 +261,6 @@ describe('listWorkflowMetrics', () => {
 
   it('can specify a page token', async () => {
     mockFetch();
-    await client.listWorkflowMetrics({ pageToken });
     expectFetch(
       HTTPMethod.Get,
       `insights/${client.getProjectSlug()}/workflows?page-token=${pageToken}`
